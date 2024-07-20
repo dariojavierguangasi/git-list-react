@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import props from './profile-data.js'
-import Button from './button.js';
+import Button from './button.js'
+import Icon from './icon'
 
 const ProfileStyled = styled.div`
     grid-area: profile;
@@ -46,7 +47,7 @@ const ProfileStyled = styled.div`
 `
 
 function Profile() {
-    const {name, login, avatar_url, bio, followers, following, location, blog, twitter_username} = props;
+    const { name, login, avatar_url, bio, followers, following, location, blog, twitter_username } = props;
     return (
         <ProfileStyled>
             <img src={avatar_url} className='avatar' width="278" height="278" alt="" />
@@ -54,12 +55,15 @@ function Profile() {
             <p className='username'>{login}</p>
             <div className='buttons'>
                 <Button
-                text = 'Follow'
-                link = '#'
+                    text='Follow'
+                    link='#'
                 ></Button>
                 <Button
-                text = 'Sponsor'
-                icon = {<i>📍</i>}
+                    text='Sponsor'
+                    icon={<Icon
+                        name="heart"
+                        size="24"
+                        color="var(--pink)" />}
                 ></Button>
             </div>
             <p className='bio info'>
@@ -72,12 +76,33 @@ function Profile() {
                 - 81
             </p>*/}
             <p className='location info'>
-                <span>📍</span> {location}
+                <span>
+                    <Icon
+                    name='location'
+                    size="24"
+                    color='var(--grey)'
+                    />
+                </span> 
+                {location}
             </p>
             <a className='info' href={blog} target='_blank' rel='noreferrer'>
+                <span>
+                    <Icon
+                    name='link'
+                    size="24"
+                    color='var(--grey)'
+                    />    
+                </span>
                 {blog}
             </a>
             <a className='info' href={`https://twitter.com/${twitter_username}`} target='_blank' rel='noreferrer'>
+                <span>
+                    <Icon
+                    name='twitter'
+                    size="24"
+                    color='var(--grey)'
+                    />    
+                </span>
                 @{twitter_username}
             </a>
         </ProfileStyled>
