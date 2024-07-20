@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import props from './profile-data.js'
+import Button from './button.js';
 
 const ProfileStyled = styled.div`
     grid-area: profile;
@@ -44,27 +46,40 @@ const ProfileStyled = styled.div`
 `
 
 function Profile() {
+    const {name, login, avatar_url, bio, followers, following, location, blog, twitter_username} = props;
     return (
         <ProfileStyled>
-            <img src="" className='avatar' width="278" height="278" alt="" />
-            <p className='name'>Dario Guangasi</p>
-            <p className='username'>dariojavierguangasi</p>
+            <img src={avatar_url} className='avatar' width="278" height="278" alt="" />
+            <p className='name'>{name}</p>
+            <p className='username'>{login}</p>
             <div className='buttons'>
-                <button>Follow</button>
-                <button>Message</button>
+                <Button
+                text = 'Follow'
+                link = '#'
+                ></Button>
+                <Button
+                text = 'Sponsor'
+                icon = {<i>📍</i>}
+                ></Button>
             </div>
-            <p className='bio info'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec enim nec turpis aliquam fermentum. Sed auctor, justo eget fermentum fringilla, nisl purus ultricies nunc, vel ultricies nunc justo nec nunc.</p>
+            <p className='bio info'>
+                {bio}
+            </p>
             <p className='followers info'>
-                <span>-</span> 10 <span>followers</span> <span>-</span> 15 <span>following</span>
+                <span>-</span>{followers}<span>followers</span> <span>-</span>{following}<span>following</span>
             </p>
-            <p className='starts info'>
+            {/*<p className='starts info'>
                 - 81
-            </p>
+            </p>*/}
             <p className='location info'>
-                <span>📍</span> Ecuador
+                <span>📍</span> {location}
             </p>
-            <a className='info' href='https://leonidasesteban.com' target='_blank' rel='noreferrer'> https://leonidasesteban.com</a>
-            <a className='info' href='https://leonidasesteban.com' target='_blank' rel='noreferrer'>@DarioGuangasi</a>
+            <a className='info' href={blog} target='_blank' rel='noreferrer'>
+                {blog}
+            </a>
+            <a className='info' href={`https://twitter.com/${twitter_username}`} target='_blank' rel='noreferrer'>
+                @{twitter_username}
+            </a>
         </ProfileStyled>
     )
 }
